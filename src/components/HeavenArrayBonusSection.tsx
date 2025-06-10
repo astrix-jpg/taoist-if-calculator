@@ -1,6 +1,6 @@
 import { Checkbox, Col, Divider, Form, InputNumber, Row, Select, Typography } from "antd";
 import { Fragment } from "react/jsx-runtime";
-import type { BeastType } from "../types/beastType";
+import type { BeastType } from "../types/BeastDataSelectType";
 
 const HeavenArrayBonusSection = (props) => {
   const { options } = props;

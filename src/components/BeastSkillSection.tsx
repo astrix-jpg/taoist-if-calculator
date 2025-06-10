@@ -1,9 +1,9 @@
-import { Checkbox, Col, Divider, Form, InputNumber, Row, Select } from "antd";
+import { Checkbox, Col, Divider, Form, InputNumber, Row } from "antd";
 import { Fragment } from "react/jsx-runtime";
 import { Typography } from "antd";
 const { Text } = Typography;
 
-const BeastSkillSection = (props) => {
+const BeastSkillSection = () => {
   return (
     <Fragment>
       <Divider dashed orientation="left" size="small">

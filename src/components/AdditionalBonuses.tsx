@@ -1,17 +1,16 @@
 import {
-  Checkbox,
+  
   Col,
   Divider,
   Form,
   InputNumber,
   Row,
-  Select,
+  
   Typography,
 } from "antd";
 import { Fragment } from "react/jsx-runtime";
-import type { BeastType } from "../types/beastType";
 
-const AdditionalBonusesSection = (props) => {
+const AdditionalBonusesSection = () => {
   return (
     <Fragment>
       <Divider dashed orientation="left" size="small">
@@ -27,13 +26,32 @@ const AdditionalBonusesSection = (props) => {
       <Row gutter={[16, 16]}>
         <Col xs={24} sm={24} md={12} lg={6} xl={6}>
           <Form.Item
-            name="allianceLEBoostPerc"
-            label="Life Essence"
-            tooltip={"Life Essence boost % from the alliance skill"}
+            name="xuanBoostPerc"
+            label="Xuan Body Boost"
+            tooltip={"boost % from Xuan Body Level"}
             rules={[
               {
                 required: true,
-                message: "alliance skill % for Life Essence is Required",
+                message: "Xuan Body Boost is Required",
+              },
+            ]}
+          >
+            <InputNumber min={0} style={{ width: "100%" }} addonAfter="%" />
+          </Form.Item>
+        </Col>
+
+        
+      </Row>
+      <Row gutter={[16, 16]}>
+        <Col xs={24} sm={24} md={12} lg={6} xl={6}>
+          <Form.Item
+            name="xuanBoostPerc"
+            label="Xuan Body Boost"
+            tooltip={"boost % from Xuan Body Level"}
+            rules={[
+              {
+                required: true,
+                message: "Xuan Body Boost is Required",
               },
             ]}
           >
@@ -43,7 +61,7 @@ const AdditionalBonusesSection = (props) => {
 
         <Col xs={24} sm={24} md={12} lg={6} xl={6}>
           <Form.Item
-            name="allianceVEBoostPerc"
+            name="healthBoostSwordPerc"
             label="Vital Energy"
             tooltip={"Vital Energy boost % from the alliance skill"}
             rules={[
@@ -59,7 +77,7 @@ const AdditionalBonusesSection = (props) => {
 
         <Col xs={24} sm={24} md={12} lg={6} xl={6}>
           <Form.Item
-            name="allianceSTRBoostPerc"
+            name="healthBoostRobePerc"
             label="Strength"
             tooltip={"Strength boost % from the alliance skill"}
             rules={[
@@ -75,7 +93,7 @@ const AdditionalBonusesSection = (props) => {
 
         <Col xs={24} sm={24} md={12} lg={6} xl={6}>
           <Form.Item
-            name="allianceDEXBoost"
+            name="healthBoostHatPerc"
             label="Dexterity"
             tooltip={"Dexterity boost number from the alliance skill"}
             rules={[

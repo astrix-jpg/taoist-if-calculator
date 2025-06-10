@@ -1,90 +1,47 @@
 // App.tsx
-import {
-  QueryClient,
-  QueryClientProvider,
-  useQuery,
-  useMutation,
-} from "@tanstack/react-query";
-import {
-  Form,
-  Select,
-  InputNumber,
-  Button,
-  message,
-  Spin,
-  Row,
-  Col,
-  Card,
-  Steps,
-  Layout,
-} from "antd";
-import { Content, Footer, Header } from "antd/es/layout/layout";
-import { useState } from "react";
-import { Fragment } from "react/jsx-runtime";
+import { Form, Button, Spin, Row, Col, Card, Layout } from "antd";
+import { Content, Footer } from "antd/es/layout/layout";
 import BeastinfoSection from "./components/BeastinfoSection";
 import "./App.css";
 import BeastSkillSection from "./components/BeastSkillSection";
 import HeavenArrayBonusSection from "./components/HeavenArrayBonusSection";
 import AllianceSkillBonusSection from "./components/AllianceSkillBonusSection";
 import AdditionalBonusesSection from "./components/AdditionalBonuses";
-
-const { Option } = Select;
-const queryClient = new QueryClient();
-
-// GET: Fetch dropdown options
-const fetchDropdownOptions = async () => {
-  const response = await fetch("https://jsonplaceholder.typicode.com/users");
-  if (!response.ok) throw new Error("Failed to fetch users");
-  const data = await response.json();
-  return data.map((user: any) => ({ label: user.name, value: user.id }));
-};
-
-// POST: Submit form data
-const postFormData = async (formData: any) => {
-  const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(formData),
-  });
-  if (!response.ok) throw new Error("Failed to submit");
-  return await response.json();
-};
+import { beastData } from "./types/beastdata";
+import type { BeastDataType } from "./types/beastDataType";
+import type { DefaultOptionType } from "antd/es/select";
+import { StarOutlined } from "@ant-design/icons";
 
 const FormScreen = () => {
   const [form] = Form.useForm();
 
-  const { data: options, isLoading } = useQuery({
-    queryKey: ["dropdown-options"],
-    queryFn: fetchDropdownOptions,
-  });
-
-  const mutation = useMutation({
-    mutationFn: postFormData,
-    onSuccess: () => {
-      message.success("Form submitted successfully!");
-      form.resetFields();
-    },
-    onError: () => {
-      message.error("Submission failed");
-    },
-  });
-
   const onFinish = (values: any) => {
-    mutation.mutate(values);
+    console.log(values);
   };
 
-  const [current, setCurrent] = useState(0);
-
-  const onChange = (value: number) => {
-    console.log("onChange:", value);
-    setCurrent(value);
-  };
+  const beastDataSelect = beastData.map(
+    (data: BeastDataType): DefaultOptionType => {
+      // const stars = [];
+      // for (let i = 0; i < data.Star; i++) {
+      //   stars.push(<StarOutlined style={{ color: "gold" }} />);
+      // }
+      return {
+        label: (
+          <span>
+            {data.Name}-[{data.Star} <StarOutlined style={{ color: "gold" }} />]
+          </span>
+        ),
+        searchParam: data.Name,
+        value: data.BeastId,
+      };
+    }
+  );
   return (
     <Layout
       style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
     >
       <Content style={{ flex: 1, padding: "24px", overflow: "auto" }}>
-        <Spin spinning={isLoading}>
+        <Spin spinning={false}>
           <Row gutter={[16, 16]} justify="center">
             {/* Left Card */}
             <Col
@@ -107,14 +64,14 @@ const FormScreen = () => {
               >
                 <Card
                   style={{
-                    backgroundColor: "rgba(255, 255, 255, 0.75) !important;",
-                    border: "1px solid rgba(0, 0, 0, 0.1);",
-                    backdropFilter: "blur(6px);",
-                    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1);"
+                    backgroundColor: "rgba(255, 255, 255, 0.75)", // soft white with 75% opacity
+                    border: "1px solid rgba(0, 0, 0, 0.1)",
+                    backdropFilter: "blur(5px)", // nice subtle background blur
+                    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
                   }}
                   title="Beast IF Calculator"
                 >
-                  <BeastinfoSection options={options} />
+                  <BeastinfoSection options={beastDataSelect} />
                   <BeastSkillSection />
                   <HeavenArrayBonusSection />
                   <AllianceSkillBonusSection />
@@ -122,12 +79,7 @@ const FormScreen = () => {
                   <Row>
                     <Col span={24}>
                       <Form.Item>
-                        <Button
-                          type="primary"
-                          htmlType="submit"
-                          loading={mutation.isLoading}
-                          block
-                        >
+                        <Button type="primary" htmlType="submit" block>
                           Submit
                         </Button>
                       </Form.Item>
@@ -155,9 +107,5 @@ const FormScreen = () => {
 };
 
 export default function App() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <FormScreen />
-    </QueryClientProvider>
-  );
+  return <FormScreen />;
 }
