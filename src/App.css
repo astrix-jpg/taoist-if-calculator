@@ -1,0 +1,45 @@
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+.ant-layout {
+  /*background: none !important;*/
+  background-image: url('assets/images/bg.png');
+  background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+@keyframes pssttt-shake {
+  0% {
+    transform: translateY(0);
+  }
+
+  15% {
+    transform: translateY(-2px);
+  }
+
+  30% {
+    transform: translateY(2px);
+  }
+
+  45% {
+    transform: translateY(-2px);
+  }
+
+  60% {
+    transform: translateY(2px);
+  }
+
+  75% {
+    transform: translateY(-1px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
