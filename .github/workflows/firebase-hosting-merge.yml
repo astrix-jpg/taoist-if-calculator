@@ -5,6 +5,9 @@ name: Deploy to Firebase Hosting
 on:
   push:
       branches: [ main ]
+  workflow_dispatch:
+      inputs: {}
+  
 permissions:
   checks: write
   contents: read
