@@ -1,10 +1,8 @@
 import { Col, Divider, Form, InputNumber, Row, Select, Typography } from "antd";
 import { Fragment } from "react/jsx-runtime";
-import type { BeastType } from "../types/beastType";
+import type { DefaultOptionType } from "antd/es/select";
 
-const BeastinfoSection = (props) => {
-  const { options } = props;
-
+const BeastinfoSection = ({ options }: { options: DefaultOptionType[] }) => {
   return (
     <Fragment>
       <Divider dashed orientation="left" size="small">
@@ -13,7 +11,7 @@ const BeastinfoSection = (props) => {
         </Typography.Title>
       </Divider>
       <Row gutter={[16, 16]}>
-        <Col xs={24} sm={24} md={12} lg={8} xl={16}>
+        <Col xs={24} sm={24} md={16} lg={16} xl={16}>
           <Form.Item
             name="beastId"
             label="Beast"
@@ -22,16 +20,16 @@ const BeastinfoSection = (props) => {
               "Select the beast that you want to calculate your Immortal Force For"
             }
           >
-            <Select placeholder="Select Beast">
-              {options?.map((opt) => (
-                <Option key={opt.value} value={opt.value}>
-                  {opt.label}
-                </Option>
-              ))}
-            </Select>
+            <Select
+              placeholder="Select Beast"
+              showSearch={true}
+              allowClear={true}
+              options={options}
+              optionFilterProp="searchParam"
+            ></Select>
           </Form.Item>
         </Col>
-        <Col xs={24} sm={24} md={12} lg={8} xl={8}>
+        <Col xs={24} sm={24} md={8} lg={8} xl={8}>
           <Form.Item
             name="numberOfBeast"
             label="Number of Beasts"
@@ -42,7 +40,7 @@ const BeastinfoSection = (props) => {
           </Form.Item>
         </Col>
 
-        <Col xs={24} sm={24} md={12} lg={8} xl={8}>
+        <Col xs={24} sm={24} md={8} lg={8} xl={8}>
           <Form.Item
             name="beastLevel"
             label="Beast Level"
@@ -61,7 +59,7 @@ const BeastinfoSection = (props) => {
           </Form.Item>
         </Col>
 
-        <Col xs={24} sm={24} md={12} lg={8} xl={8}>
+        <Col xs={24} sm={24} md={8} lg={8} xl={8}>
           <Form.Item
             name="beastRank"
             label="Beast Rank"
@@ -79,7 +77,7 @@ const BeastinfoSection = (props) => {
           </Form.Item>
         </Col>
 
-        <Col xs={24} sm={24} md={12} lg={8} xl={8}>
+        <Col xs={24} sm={24} md={8} lg={8} xl={8}>
           <Form.Item
             name="beastBloodLineLevel"
             label="Bloodline Level"
