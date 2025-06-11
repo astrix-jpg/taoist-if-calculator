@@ -43,3 +43,10 @@ body,
     transform: translateY(0);
   }
 }
+
+.ant-layout-footer {
+  text-align: center !important;
+  background: rgba(46, 131, 126, .78);
+  padding: 10px 0px;
+  font-size: 14px;
+}

@@ -1,26 +1,57 @@
 // App.tsx
-import { Form, Button, Spin, Row, Col, Card, Layout } from "antd";
+import {
+  Form,
+  Button,
+  Spin,
+  Row,
+  Col,
+  Card,
+  Layout,
+  Modal,
+  message,
+} from "antd";
 import { Content, Footer } from "antd/es/layout/layout";
 import BeastinfoSection from "./components/BeastinfoSection";
 import "./App.css";
 import BeastSkillSection from "./components/BeastSkillSection";
 import HeavenArrayBonusSection from "./components/HeavenArrayBonusSection";
 import AllianceSkillBonusSection from "./components/AllianceSkillBonusSection";
-import AdditionalBonusesSection from "./components/AdditionalBonuses";
-import { beastData } from "./types/beastdata";
-import type { BeastDataType } from "./types/beastDataType";
+import AdditionalBonusesSection from "./components/AdditionalTalismanBonuses";
+import { beastData, beastLookupData } from "./types/beastdata";
+import type { BeastDataLookup } from "./types/beastDataType";
 import type { DefaultOptionType } from "antd/es/select";
-import { StarOutlined } from "@ant-design/icons";
+import { HeartFilled, StarFilled } from "@ant-design/icons";
+import type { UserIfInput } from "./types/userIfInput";
+import { calculateIf } from "./utils/ifcalcutil";
+import AdditionalXuanBodyBonus from "./components/AdditionalXuanBodyBonus";
+import { useState } from "react";
 
 const FormScreen = () => {
-  const [form] = Form.useForm();
+  const [form] = Form.useForm<UserIfInput>();
+  const [messageApi, contextHolder] = message.useMessage();
+  //  const [loading,setLoading] = useState<boolean>(false);
 
-  const onFinish = (values: any) => {
-    console.log(values);
+  const onFinish = (values: UserIfInput) => {
+    //setLoading(true)
+    const selectedbeastData = beastData.find(
+      (x) => x.BeastId == values.beastId
+    );
+    if (!selectedbeastData) {
+      messageApi.error(
+        "There was problem getting data for the selected beast."
+      );
+      return;
+    }
+    const { beastTotalIf, unmountTotalIfloss } = calculateIf(
+      values,
+      selectedbeastData
+    );
+    showResultModal();
+    // setLoading(false)
   };
 
-  const beastDataSelect = beastData.map(
-    (data: BeastDataType): DefaultOptionType => {
+  const beastDataSelect = beastLookupData.map(
+    (data: BeastDataLookup): DefaultOptionType => {
       // const stars = [];
       // for (let i = 0; i < data.Star; i++) {
       //   stars.push(<StarOutlined style={{ color: "gold" }} />);
@@ -28,7 +59,7 @@ const FormScreen = () => {
       return {
         label: (
           <span>
-            {data.Name}-[{data.Star} <StarOutlined style={{ color: "gold" }} />]
+            {data.Name}-[{data.Star} <StarFilled style={{ color: "gold" }} />]
           </span>
         ),
         searchParam: data.Name,
@@ -36,10 +67,26 @@ const FormScreen = () => {
       };
     }
   );
+
+  /* Result Modal  */
+  const [openResultModal, setOpenResultModal] = useState(false);
+
+  const showResultModal = () => {
+    setOpenResultModal(true);
+  };
+  const handleResultModalOk = () => {
+    setOpenResultModal(false);
+  };
+
+  const handleResultModalCancel = () => {
+    setOpenResultModal(false);
+  };
+
   return (
     <Layout
       style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
     >
+      {contextHolder}
       <Content style={{ flex: 1, padding: "24px", overflow: "auto" }}>
         <Spin spinning={false}>
           <Row gutter={[16, 16]} justify="center">
@@ -76,11 +123,12 @@ const FormScreen = () => {
                   <HeavenArrayBonusSection />
                   <AllianceSkillBonusSection />
                   <AdditionalBonusesSection />
+                  <AdditionalXuanBodyBonus />
                   <Row>
                     <Col span={24}>
                       <Form.Item>
                         <Button type="primary" htmlType="submit" block>
-                          Submit
+                          Calculate
                         </Button>
                       </Form.Item>
                     </Col>
@@ -98,9 +146,37 @@ const FormScreen = () => {
           </Row>
         </Spin>
       </Content>
-      <Footer style={{ textAlign: "center" }}>
-        {/* Always at bottom */}
-        My Footer ©2025
+      <Modal
+        open={openResultModal}
+        title="IF Calculator Result"
+        onOk={handleResultModalOk}
+        onCancel={handleResultModalCancel}
+        destroyOnHidden={false} // Don't destroy the DOM on close
+        forceRender
+        footer={(_, { OkBtn }) => (
+          <>
+            <OkBtn />
+          </>
+        )}
+      >
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>
+          If you are looking for some help with your game, Checkout
+          Lazyassistant.tech. Cheap and efficient way to get your activities
+          done.
+        </p>
+      </Modal>
+      <Footer>
+        <span>
+          Made with <HeartFilled style={{ color: "red" }} />
+        </span>
+        <br />
+        <a href="https://lazytaoist.tech" style={{ color: "black" }}>
+          Try lazytaoist
+        </a>
       </Footer>
     </Layout>
   );

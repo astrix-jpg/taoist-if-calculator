@@ -1,9 +1,7 @@
-import { Checkbox, Col, Divider, Form, InputNumber, Row, Select, Typography } from "antd";
+import { Col, Divider, Form, InputNumber, Row,  Typography } from "antd";
 import { Fragment } from "react/jsx-runtime";
-import type { BeastType } from "../types/BeastDataSelectType";
 
-const HeavenArrayBonusSection = (props) => {
-  const { options } = props;
+const HeavenArrayBonusSection = () => {
 
   return (
     <Fragment>
@@ -44,17 +42,6 @@ const HeavenArrayBonusSection = (props) => {
             rules={[{ required: true, message: "Heaven Boost % for Str is Required" }]}
           >
             <InputNumber min={0} style={{ width: "100%" }}   addonAfter="%"  />
-          </Form.Item>
-        </Col>
-
-        <Col xs={24} sm={24} md={12} lg={6} xl={6}>
-          <Form.Item
-            name="heavenSkillDEXBoost"
-            label="Dexterity"
-            tooltip={"Dexterity boost number from the heaven sect array"}
-            rules={[{ required: true, message: "Heaven Boost value for DEX is Required" }]}
-          >
-            <InputNumber min={0} style={{ width: "100%" }} />
           </Form.Item>
         </Col>
       </Row>

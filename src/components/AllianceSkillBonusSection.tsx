@@ -1,9 +1,7 @@
-import { Checkbox, Col, Divider, Form, InputNumber, Row, Select, Typography } from "antd";
+import {  Col, Divider, Form, InputNumber, Row,  Typography } from "antd";
 import { Fragment } from "react/jsx-runtime";
-import type { BeastType } from "../types/BeastDataSelectType";
 
-const AllianceSkillBonusSection = (props) => {
-  const { options } = props;
+const AllianceSkillBonusSection = () => {
 
   return (
     <Fragment>

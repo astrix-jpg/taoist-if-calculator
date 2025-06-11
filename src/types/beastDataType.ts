@@ -1,5 +1,4 @@
 export type BeastDataType = {
-  Name: string;
   Star: number;
   LE: number;
   STR: number;
@@ -12,5 +11,12 @@ export type BeastDataType = {
   ServantIds: string;
   Region_Boost: string;
   Region: string;
+  BeastId: number;
+};
+
+
+export type BeastDataLookup = {
+  Name:string;
+  Star: number;
   BeastId: number;
 };
