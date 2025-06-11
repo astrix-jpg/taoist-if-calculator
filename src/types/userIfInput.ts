@@ -17,6 +17,11 @@ export type UserIfInput =  {
   heavenSkillSTRBoostPerc: number;
   heavenSkillVEBoostPerc: number;
   isServantMounted: boolean | undefined;
+  mountedServantRegion:number,
+  mountedMight: number;
+  mountedIntellect: number;
+  mountedCommand: number;
+  mountedInsight: number;
   numberOfBeast: number;
   robeBoostPerc: number;
   xuanBoostPerc: number;
