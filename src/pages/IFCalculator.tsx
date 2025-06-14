@@ -5,7 +5,7 @@ import BeastSkillSection from "./../components/BeastSkillSection";
 import HeavenArrayBonusSection from "./../components/HeavenArrayBonusSection";
 import AllianceSkillBonusSection from "./../components/AllianceSkillBonusSection";
 import AdditionalBonusesSection from "./../components/AdditionalTalismanBonuses";
-import { beastData, beastLookupData } from "./../types/beastdata";
+import { beastData, beastLookupData } from "../types/beastdata";
 import type { BeastDataLookup } from "./../types/beastDataType";
 import type { DefaultOptionType } from "antd/es/select";
 import { StarFilled } from "@ant-design/icons";
@@ -143,7 +143,7 @@ const IFCalculator = () => {
 
       <Modal
         open={openResultModal}
-        title="IF Calculator Result"
+        title="Result"
         onOk={handleResultModalOk}
         onCancel={handleResultModalCancel}
         destroyOnHidden={false} // Don't destroy the DOM on close

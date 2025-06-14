@@ -1,6 +1,6 @@
 // App.tsx
-import { Button, Layout } from "antd";
-import { Content, Footer } from "antd/es/layout/layout";
+import { Layout } from "antd";
+import { Content } from "antd/es/layout/layout";
 import "./App.css";
 import IFCalculator from "./pages/IFCalculator";
 
@@ -13,7 +13,7 @@ const FormScreen = () => {
         <IFCalculator></IFCalculator>
       </Content>
 
-      <Footer>
+      {/* <Footer>
         <span style={{ fontSize: "15px" }}>
           Get your game play automated with{" "}
           <a
@@ -27,7 +27,7 @@ const FormScreen = () => {
           </a>
         </span>
         <br />
-      </Footer>
+      </Footer> */}
     </Layout>
   );
 };
