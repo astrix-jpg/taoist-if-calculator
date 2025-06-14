@@ -1,5 +1,5 @@
-import beastNameData from "./beastDataLookup";
-import beastDataRaw from "./beastDataRaw";
+import beastNameData from "../data/beastDataLookup";
+import beastDataRaw from "../data/beastDataRaw";
 import type { BeastDataLookup, BeastDataType } from "./beastDataType";
 
 export const beastData: readonly BeastDataType[] = beastDataRaw

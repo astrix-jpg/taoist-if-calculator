@@ -17,7 +17,7 @@ export type UserIfInput =  {
   heavenSkillSTRBoostPerc: number;
   heavenSkillVEBoostPerc: number;
   isServantMounted: boolean | undefined;
-  mountedServantRegion:number,
+  mountedServantRegion:string,
   mountedMight: number;
   mountedIntellect: number;
   mountedCommand: number;
@@ -25,4 +25,10 @@ export type UserIfInput =  {
   numberOfBeast: number;
   robeBoostPerc: number;
   xuanBoostPerc: number;
+
+personalElementalValue: number;
+beastSkillElemental: number;
+talismanElementBoostPerc: number;
+
+
 }
