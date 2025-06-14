@@ -1,7 +1,6 @@
 import { bldataBase, blMultiplier } from "../data/beastBloodLineData";
 import { beastRankBonus } from "../data/beastRankData";
 import { domainAttrData } from "../data/domainIFData";
-import { beastData } from "../types/beastdata";
 import type { BeastDataType } from "../types/beastDataType";
 import type { UserIfInput } from "../types/userIfInput";
 
@@ -131,7 +130,7 @@ const calculateIf = (
     healthBoostSTR +
     healthBoostVE +
     elementalBonus;
-  console.log(total, "total");
+
   let ifLoss = 0;
   if (userInputData.isServantMounted) {
     const domainData = domainAttrData.find(
@@ -172,8 +171,8 @@ const calculateIf = (
     total = total - ifLoss;
   }
   return {
-    beastTotalIf: total,
-    unmountTotalIfloss: ifLoss,
+    beastTotalIf: Math.floor(total),
+    unmountTotalIfloss: Math.floor(ifLoss),
   };
 };
 
@@ -192,8 +191,7 @@ function calculateBeastStatGain(
     beastBase + (perLevelGain * level - perLevelGain) + bloodLineGain;
 
   const total =
-    Math.round(levelgain * (1 + beastRankMultiplier)) * (1 + countBonus) +
-    beastSkillGain;
+    levelgain * (1 + beastRankMultiplier) * (1 + countBonus) + beastSkillGain;
 
   return total;
 }
@@ -201,16 +199,15 @@ function calculateBeastStatGain(
 function calculateElementalBonus(
   elementalStat: number,
   elementalBeastBoost: number,
-  elementalTalismanBoost:number
+  elementalTalismanBoost: number
 ) {
-  return Math.round(
+  return (
     elementalStat * (elementalBeastBoost / 100) * (elementalTalismanBoost / 100)
   );
 }
 
 function calculateBeastStatGainWithBoost(stat: number, boost: number) {
-  console.log(stat, boost, 1 + boost / 100, "beforeboost");
-  return Math.round(stat * (1 + boost / 100));
+  return stat * (1 + boost / 100);
 }
 
 function calculateBeastStatGainedIF(beaststat: number, factor: number) {
@@ -218,10 +215,10 @@ function calculateBeastStatGainedIF(beaststat: number, factor: number) {
 }
 
 function applyTalismanboost(stat: number, boost: number) {
-  return Math.round(stat * (boost / 100));
+  return stat * (boost / 100);
 }
 
 function calculateAttrToIF(attribute: number, factor: number) {
-  return Math.round((attribute / 500) * factor);
+  return (attribute / 500) * factor;
 }
 export { calculateIf };
