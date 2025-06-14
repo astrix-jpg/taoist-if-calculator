@@ -1,5 +1,15 @@
 import { Fragment } from "react/jsx-runtime";
-import { Form, Button, Spin, Row, Col, Card, Modal, message } from "antd";
+import {
+  Form,
+  Button,
+  Spin,
+  Row,
+  Col,
+  Card,
+  Modal,
+  message,
+  Popover,
+} from "antd";
 import BeastinfoSection from "./../components/BeastinfoSection";
 import BeastSkillSection from "./../components/BeastSkillSection";
 import HeavenArrayBonusSection from "./../components/HeavenArrayBonusSection";
@@ -13,6 +23,7 @@ import type { UserIfInput } from "./../types/userIfInput";
 import { calculateIf } from "./../utils/ifcalcutil";
 import AdditionalXuanBodyBonus from "./../components/AdditionalXuanBodyBonus";
 import { useEffect, useState } from "react";
+
 const IFCalculator = () => {
   const [form] = Form.useForm<UserIfInput>();
   const [messageApi, contextHolder] = message.useMessage();
@@ -79,6 +90,21 @@ const IFCalculator = () => {
     setLoading(false);
   };
 
+  /* Credits Modal  */
+  const [openCreditsModal, setOpenCreditsModal] = useState(false);
+
+  const showCreditsModal = () => {
+    setOpenCreditsModal(true);
+    //setLoading(false);
+  };
+  const handleCreditsModalOk = () => {
+    setOpenCreditsModal(false);
+  };
+
+  const handleCreditsModalCancel = () => {
+    setOpenCreditsModal(false);
+  };
+
   return (
     <Fragment>
       {contextHolder}
@@ -129,6 +155,24 @@ const IFCalculator = () => {
                   </Form.Item>
                 </Col>
               </Row>
+              <Row>
+                <Col
+                  xs={24}
+                  sm={24}
+                  md={24}
+                  lg={24}
+                  xl={24}
+                  style={{ textAlign: "center", fontSize: "12px" }}
+                >
+                  <Button
+                    type="link"
+                    style={{ fontSize: "12px" }}
+                    onClick={showCreditsModal}
+                  >
+                    Credits
+                  </Button>
+                </Col>
+              </Row>
             </Card>
           </Form>
         </Col>
@@ -173,6 +217,25 @@ const IFCalculator = () => {
             </a>
           </span>
         </div>
+      </Modal>
+
+      <Modal
+        open={openCreditsModal}
+        title="Credits"
+        onOk={handleCreditsModalOk}
+        onCancel={handleCreditsModalCancel}
+        destroyOnHidden={false} // Don't destroy the DOM on close
+        footer={null}
+      >
+        <ul>
+          <li>
+            <span>
+              <strong style={{ color: "#DE591C" }}>Nora_96</strong> for beast
+              data, calculations, accuracy testing and google form version of
+              calculator as reference.
+            </span>
+          </li>
+        </ul>
       </Modal>
     </Fragment>
   );
