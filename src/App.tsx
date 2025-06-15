@@ -14,17 +14,8 @@ const FormScreen = () => {
       </Content>
 
       {/* <Footer>
-        <span style={{ fontSize: "15px" }}>
-          Get your game play automated with{" "}
-          <a
-            href="https://lazyassistant.tech"
-            target="_"
-            style={{ color: "White" }}
-          >
-            <Button type="link" style={{ color: "White" }}>
-              lazyassistant.tech
-            </Button>
-          </a>
+        <span style={{ fontSize: "12px" }}>
+          Taoist Calculator By astrix.jpg
         </span>
         <br />
       </Footer> */}

@@ -167,9 +167,9 @@ const calculateIf = (
       ifLoss = mightToIF + intellectToIf + commandToIF + insightToIF;
     }
   }
-  if (ifLoss > 0) {
-    total = total - ifLoss;
-  }
+  // if (ifLoss > 0) {
+  //   total = total - ifLoss;
+  // }
   return {
     beastTotalIf: Math.floor(total),
     unmountTotalIfloss: Math.floor(ifLoss),

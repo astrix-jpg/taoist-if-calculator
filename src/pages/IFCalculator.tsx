@@ -199,8 +199,28 @@ const IFCalculator = () => {
         )}
       >
         <div className="ifresultdisplay">
-          <p>Total Beast IF : {result?.beastTotalIf ?? 0}</p>
-          <p>Unmount IF Loss : {result?.unmountTotalIfloss ?? 0}</p>
+          <p>
+            Total Beast IF : {result?.beastTotalIf.toLocaleString("en") ?? 0}
+          </p>
+
+          {result?.unmountTotalIfloss && result?.unmountTotalIfloss > 0 ? (
+            <>
+              <p>
+                Unmount IF Loss :{" "}
+                {result?.unmountTotalIfloss.toLocaleString("en") ?? 0}
+              </p>
+              <p>
+                IF gain when riding : {" "}
+                 {(
+                  result?.beastTotalIf - result?.unmountTotalIfloss
+                ).toLocaleString("en")}
+              </p>
+            </>
+          ) : (
+            <p>
+              IF gain when riding : {result?.beastTotalIf.toLocaleString("en")}
+            </p>
+          )}
         </div>
         <div className="assistantadvmodal">
           <p>

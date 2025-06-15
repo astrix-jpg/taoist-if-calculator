@@ -49,12 +49,6 @@ body,
 }
 
 .ant-layout-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  z-index: 100;
-
   text-align: center !important;
   background: rgba(46, 131, 126, 0.78);
   padding: 10px 0;
@@ -67,9 +61,11 @@ body,
   border-radius: 5px;
   padding: 0px 10px 5px 10px;
 }
-.assistantadvmodal>p{
-   font-size: 12px;
+
+.assistantadvmodal>p {
+  font-size: 12px;
 }
+
 .ifresultdisplay {
   border: 1px solid rgba(46, 131, 126, 0.45);
   padding: 0px 10px;
