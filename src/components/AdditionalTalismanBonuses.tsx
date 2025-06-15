@@ -68,16 +68,7 @@ const AdditionalTalismanBonuses = () => {
             <InputNumber min={0} style={{ width: "100%" }} addonAfter="%" />
           </Form.Item>
         </Col>
-        <Col xs={24} sm={24} md={12} lg={8} xl={6}>
-          <Form.Item
-             name="talismanElementBoostPerc"
-            label="Element Health Boost"
-            tooltip={"Associating Element Health Bonus from Talisman"}
-           initialValue={0}
-          >
-            <InputNumber min={0} style={{ width: "100%" }} addonAfter="%" />
-          </Form.Item>
-        </Col>
+       
       </Row>
     </Fragment>
   );
