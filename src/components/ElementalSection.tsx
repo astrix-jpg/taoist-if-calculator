@@ -26,7 +26,6 @@ const ElementalSection = () => {
             name="elementType"
             label="Beast Element Skill Type"
             tooltip={"Specify the element that gives beast has skill % boost for"}
-            rules={[{ required: true }]}
           >
             <Select
               options={
@@ -47,7 +46,6 @@ const ElementalSection = () => {
             name="beastSkillElemental"
             label={`Beast ${skillType} Skill`}
             tooltip={"Beast Elemental skill % Value, No need to enter % just the value"}
-            rules={[{ required: true, message: "Beast Elemental Skill % is Required" }]}
             initialValue={0}
           >
             <InputNumber min={0} style={{ width: "100%" }} addonAfter="%"  />
