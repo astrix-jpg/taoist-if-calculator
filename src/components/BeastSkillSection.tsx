@@ -71,28 +71,7 @@ const BeastSkillSection = () => {
             <InputNumber min={0} style={{ width: "100%" }} />
           </Form.Item>
         </Col>
-        <Col xs={24} sm={24} md={12} lg={6} xl={6}>
-          <Form.Item
-            name="beastSkillElemental"
-            label="Elemental % "
-            tooltip={"Beast Elemental skill % Value"}
-            rules={[{ required: true, message: "Beast Elemental Skill % is Required" }]}
-            initialValue={0}
-          >
-            <InputNumber min={0} style={{ width: "100%" }} />
-          </Form.Item>
-        </Col>
-
-         <Col xs={24} sm={24} md={12} lg={6} xl={6}>
-          <Form.Item
-            name="personalElementalValue"
-            label="Personal Elemental Stats "
-            tooltip={"Personal elemental stats for the associating beast elemental skill"}
-            initialValue={0}
-          >
-            <InputNumber min={0} style={{ width: "100%" }} />
-          </Form.Item>
-        </Col>
+       
       </Row>
       <Row gutter={[16, 16]}>
         <Col xs={24} sm={24} md={12} lg={6} xl={6}>

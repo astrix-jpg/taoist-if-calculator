@@ -23,6 +23,7 @@ import type { UserIfInput } from "./../types/userIfInput";
 import { calculateIf } from "./../utils/ifcalcutil";
 import AdditionalXuanBodyBonus from "./../components/AdditionalXuanBodyBonus";
 import { useEffect, useState } from "react";
+import ElementalSection from "../components/ElementalSection";
 
 const IFCalculator = () => {
   const [form] = Form.useForm<UserIfInput>();
@@ -144,6 +145,7 @@ const IFCalculator = () => {
               <AllianceSkillBonusSection />
               <AdditionalBonusesSection />
               <AdditionalXuanBodyBonus />
+              <ElementalSection/>
               <Row>
                 <Col span={24}>
                   <Form.Item>
