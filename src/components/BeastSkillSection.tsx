@@ -77,7 +77,7 @@ const BeastSkillSection = () => {
         <Col xs={24} sm={24} md={12} lg={6} xl={6}>
           <Form.Item
             name="isServantMounted"
-            label="Is Mounted"
+            label="Servant Mounted"
             tooltip={"Is the beast mounted by a servant."}
             valuePropName="checked"
           >

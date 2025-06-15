@@ -33,15 +33,20 @@ const BeastinfoSection = ({ options }: { options: DefaultOptionType[] }) => {
           <Form.Item
             name="numberOfBeast"
             label="Number of Beasts"
-            tooltip={"Specify the number of total beasts in the beast garden. If you have greater than 15, pick 15 as boost only applies till 15."}
+            tooltip={
+              "Specify the number of total beasts in the beast garden. If you have greater than 15, pick 15 as boost only applies till 15."
+            }
             rules={[{ required: true }]}
           >
             <Select
-              options={Array.from({ length: 15 }, (_, i) => ({
-                label: i + 1,
-                value: i + 1,
-              }))}
-            ></Select>
+              options={Array.from({ length: 15 }, (_, i) => {
+                const value = i + 1;
+                return {
+                  label: value === 15 ? "≥ 15" : value,
+                  value: value,
+                };
+              })}
+            />
             {/* <InputNumber min={0} style={{ width: "100%" }} /> */}
           </Form.Item>
         </Col>

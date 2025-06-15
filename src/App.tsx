@@ -3,6 +3,7 @@ import { Layout } from "antd";
 import { Content } from "antd/es/layout/layout";
 import "./App.css";
 import IFCalculator from "./pages/IFCalculator";
+import "./firebase"; // just importing initializes it
 
 const FormScreen = () => {
   return (
