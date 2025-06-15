@@ -57,7 +57,7 @@ const ElementalSection = () => {
          <Col xs={24} sm={24} md={12} lg={6} xl={6}>
           <Form.Item
             name="personalElementalValue"
-            label={`${skillType} Element Stats`}
+            label={`${skillType?`${skillType} Damage`:"Element Stats"}`}
             tooltip={"Personal elemental stats for the associating beast elemental skill"}
             initialValue={0}
           >
