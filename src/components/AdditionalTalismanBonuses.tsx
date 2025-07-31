@@ -3,10 +3,26 @@ import {
   Divider,
   Form,
   InputNumber,
+  Popover,
   Row,
   Typography,
 } from "antd";
 import { Fragment } from "react/jsx-runtime";
+
+import talismanbonus from "../assets/helpimages/talismanbonus.png";
+import { InfoCircleOutlined } from "@ant-design/icons";
+
+
+const talismanBonusPopoverContent = (
+  <div className="content-container">
+    <p>Health Bonus value from Talisman. S: Sword / H: HAT / R: Robe</p>
+    <img
+      src={talismanbonus}
+      alt="alliance skill bonus"
+      className="content-img"
+    />
+  </div>
+);
 
 const AdditionalTalismanBonuses = () => {
   return (
@@ -19,7 +35,15 @@ const AdditionalTalismanBonuses = () => {
       <Typography.Text>
         Enter the boost values from the talisman health boost.
         Input the numbers as shown in game. No need to enter %
-      </Typography.Text>
+      </Typography.Text>{" "}
+      <Popover
+        content={talismanBonusPopoverContent}
+        title="Talisman Health Bonus"
+        trigger="hover"
+        placement="right"
+      >
+        <InfoCircleOutlined style={{ color: "red" }} />
+      </Popover>
       <Row gutter={[16, 16]}>
         <Col xs={24} sm={24} md={12} lg={8} xl={6}>
           <Form.Item
@@ -33,7 +57,7 @@ const AdditionalTalismanBonuses = () => {
               },
             ]}
           >
-            <InputNumber min={0} style={{ width: "100%" }} addonAfter="%" />
+            <InputNumber min={0} max={400}style={{ width: "100%" }} addonAfter="%" />
           </Form.Item>
         </Col>
 
@@ -49,7 +73,7 @@ const AdditionalTalismanBonuses = () => {
               },
             ]}
           >
-            <InputNumber min={0} style={{ width: "100%" }} addonAfter="%" />
+            <InputNumber min={0} max={400} style={{ width: "100%" }} addonAfter="%" />
           </Form.Item>
         </Col>
 
@@ -65,7 +89,7 @@ const AdditionalTalismanBonuses = () => {
               },
             ]}
           >
-            <InputNumber min={0} style={{ width: "100%" }} addonAfter="%" />
+            <InputNumber min={0} max={400}style={{ width: "100%" }} addonAfter="%" />
           </Form.Item>
         </Col>
        

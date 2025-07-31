@@ -1,5 +1,20 @@
-import {  Col, Divider, Form, InputNumber, Row,  Typography } from "antd";
+import {  Col, Divider, Form, InputNumber, Popover, Row,  Typography } from "antd";
 import { Fragment } from "react/jsx-runtime";
+
+import allianceBonus from "../assets/helpimages/allianceBonus.png";
+import { InfoCircleOutlined } from "@ant-design/icons";
+
+
+const allianceBonusPopoverContent = (
+  <div className="content-container">
+    <p>Bonus value from Alliance Skill. Enter the +X% value, without the %. Not the level. </p>
+    <img
+      src={allianceBonus}
+      alt="alliance skill bonus"
+      className="content-img"
+    />
+  </div>
+);
 
 const AllianceSkillBonusSection = () => {
 
@@ -11,6 +26,15 @@ const AllianceSkillBonusSection = () => {
         </Typography.Title>
       </Divider>
         <Typography.Text>Enter the boost values from the Alliance Skills. Input the numbers as shown in game. No need to enter %</Typography.Text>
+        {" "}
+      <Popover
+        content={allianceBonusPopoverContent}
+        title="Alliance Skill %"
+        trigger="hover"
+        placement="right"
+      >
+        <InfoCircleOutlined style={{ color: "red" }} />
+      </Popover>
          <Row gutter={[16, 16]}>
         <Col xs={24} sm={24} md={12} lg={6} xl={6}>
           <Form.Item
