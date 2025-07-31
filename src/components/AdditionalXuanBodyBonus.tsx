@@ -1,5 +1,21 @@
-import { Col, Divider, Form, InputNumber, Row, Typography } from "antd";
+import { Col, Divider, Form, InputNumber, Popover, Row, Typography } from "antd";
 import { Fragment } from "react/jsx-runtime";
+
+
+import xuanImmortalBody from "../assets/helpimages/xuanImmortalBody.png";
+import { InfoCircleOutlined } from "@ant-design/icons";
+
+
+const xuanBodyBonusPopoverContent = (
+  <div className="content-container">
+    <p>Bonus from Xuan Immortal Body (Ascension Pavilion)</p>
+    <img
+      src={xuanImmortalBody}
+      alt="Xuan body boost"
+      className="content-img"
+    />
+  </div>
+);
 
 const AdditionalXuanBodyBonus = () => {
   return (
@@ -13,6 +29,15 @@ const AdditionalXuanBodyBonus = () => {
         Enter the boost values from the Xuan body. Input the numbers as shown in
         game. No need to enter %
       </Typography.Text>
+      {" "}
+      <Popover
+        content={xuanBodyBonusPopoverContent}
+        title="Xuan Immortal Body boost"
+        trigger="hover"
+        placement="right"
+      >
+        <InfoCircleOutlined style={{ color: "red" }} />
+      </Popover>
       <Row gutter={[16, 16]}>
         <Col xs={24} sm={24} md={12} lg={6} xl={6}>
           <Form.Item

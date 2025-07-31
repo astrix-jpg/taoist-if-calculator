@@ -1,29 +1,19 @@
 import { Fragment } from "react/jsx-runtime";
-import {
-  Form,
-  Button,
-  Spin,
-  Row,
-  Col,
-  Card,
-  Modal,
-  message,
-  Popover,
-} from "antd";
+import { Form, Button, Spin, Row, Col, Card, Modal, message } from "antd";
 import BeastinfoSection from "./../components/BeastinfoSection";
 import BeastSkillSection from "./../components/BeastSkillSection";
 import HeavenArrayBonusSection from "./../components/HeavenArrayBonusSection";
 import AllianceSkillBonusSection from "./../components/AllianceSkillBonusSection";
-import AdditionalBonusesSection from "./../components/AdditionalTalismanBonuses";
 import { beastData, beastLookupData } from "../types/beastdata";
 import type { BeastDataLookup } from "./../types/beastDataType";
 import type { DefaultOptionType } from "antd/es/select";
-import { StarFilled } from "@ant-design/icons";
+import { InfoCircleOutlined, StarFilled } from "@ant-design/icons";
 import type { UserIfInput } from "./../types/userIfInput";
 import { calculateIf } from "./../utils/ifcalcutil";
 import AdditionalXuanBodyBonus from "./../components/AdditionalXuanBodyBonus";
 import { useEffect, useState } from "react";
 import ElementalSection from "../components/ElementalSection";
+import AdditionalTalismanBonuses from "./../components/AdditionalTalismanBonuses";
 
 const IFCalculator = () => {
   const [form] = Form.useForm<UserIfInput>();
@@ -32,6 +22,7 @@ const IFCalculator = () => {
   const [result, setResult] = useState<{
     beastTotalIf: number;
     unmountTotalIfloss: number;
+    beastRidingAttr: { LE: number; STR: number; VE: number; DEX: number };
   }>();
 
   const onFinish = (values: UserIfInput) => {
@@ -137,15 +128,29 @@ const IFCalculator = () => {
                 backdropFilter: "blur(5px)", // nice subtle background blur
                 boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
               }}
-              title="Beast IF Calculator"
+              title={
+                <>
+                  <span>Beast IF Calculator</span> <br />
+                  <span
+                    style={{
+                      fontSize: "12px",
+                      fontStyle: "italic",
+                      color: "#c39393",
+                    }}
+                  >
+                    Use the {<InfoCircleOutlined style={{ color: "red" }} />}{" "}
+                    icon to get help for the sections.
+                  </span>
+                </>
+              }
             >
               <BeastinfoSection options={beastDataSelect} />
               <BeastSkillSection />
               <HeavenArrayBonusSection />
               <AllianceSkillBonusSection />
-              <AdditionalBonusesSection />
+              <AdditionalTalismanBonuses />
               <AdditionalXuanBodyBonus />
-              <ElementalSection/>
+              <ElementalSection />
               <Row>
                 <Col span={24}>
                   <Form.Item>
@@ -200,30 +205,54 @@ const IFCalculator = () => {
           </>
         )}
       >
-        <div className="ifresultdisplay">
-          <p>
-            Total Beast IF : {result?.beastTotalIf.toLocaleString("en") ?? 0}
-          </p>
-
-          {result?.unmountTotalIfloss && result?.unmountTotalIfloss > 0 ? (
-            <>
-              <p>
-                Unmount IF Loss :{" "}
-                {result?.unmountTotalIfloss.toLocaleString("en") ?? 0}
-              </p>
-              <p>
-                IF gain when riding : {" "}
-                 {(
-                  result?.beastTotalIf - result?.unmountTotalIfloss
-                ).toLocaleString("en")}
-              </p>
-            </>
-          ) : (
+        <fieldset className="ifresultdisplay">
+          <legend>Immortal Force</legend>
+          <div>
             <p>
-              IF gain when riding : {result?.beastTotalIf.toLocaleString("en")}
+              Total Beast IF : {result?.beastTotalIf.toLocaleString("en") ?? 0}
             </p>
-          )}
-        </div>
+
+            {result?.unmountTotalIfloss && result?.unmountTotalIfloss > 0 ? (
+              <>
+                <p>
+                  Unmount IF Loss :{" "}
+                  {result?.unmountTotalIfloss.toLocaleString("en") ?? 0}
+                </p>
+                <p>
+                  IF gain when riding :{" "}
+                  {(
+                    result?.beastTotalIf - result?.unmountTotalIfloss
+                  ).toLocaleString("en")}
+                </p>
+              </>
+            ) : (
+              <p>
+                IF gain when riding :{" "}
+                {result?.beastTotalIf.toLocaleString("en")}
+              </p>
+            )}
+          </div>
+        </fieldset>
+        <fieldset className="ifresultdisplay">
+          <legend>Beast Riding Attributes</legend>
+          <div className="beastRidingAttrdisplay">
+            <p>
+              Life Essence :{" "}
+              {result?.beastRidingAttr.LE.toLocaleString("en") ?? 0}
+            </p>
+            <p>
+              Strength : {result?.beastRidingAttr.STR.toLocaleString("en") ?? 0}
+            </p>
+            <p>
+              Vital Energy :{" "}
+              {result?.beastRidingAttr.VE.toLocaleString("en") ?? 0}
+            </p>
+            <p>
+              Dexterity: {result?.beastRidingAttr.DEX.toLocaleString("en") ?? 0}
+            </p>
+          </div>
+        </fieldset>
+
         <div className="assistantadvmodal">
           <p>
             Looking for service to automate your gameplay? <br /> Checkout

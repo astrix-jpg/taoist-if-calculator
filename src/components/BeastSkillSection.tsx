@@ -4,6 +4,7 @@ import {
   Divider,
   Form,
   InputNumber,
+  Popover,
   Row,
   Select,
   type CheckboxChangeEvent,
@@ -11,7 +12,29 @@ import {
 import { Fragment } from "react/jsx-runtime";
 import { Typography } from "antd";
 import { useState } from "react";
+import { InfoCircleOutlined } from "@ant-design/icons";
+import beastImage2 from "../assets/helpimages/beasttab2.png";
+import beastSkillMounted from "../assets/helpimages/beastmounted.png";
+
 const { Text } = Typography;
+
+const beastSkillContent = (
+  <div className="content-container">
+    <p>Input the stats of the beast skills from the 2nd tab in Beast info.</p>
+    <img src={beastImage2} className="content-img"></img>
+  </div>
+);
+
+const beastSkillMountedContent = (
+  <div className="content-container">
+    <p>Input the mounted stats of the beast from the 1st tab in Beast info.</p>
+    <img
+      src={beastSkillMounted}
+      alt="Beast Skill Mounted"
+      className="content-img"
+    />
+  </div>
+);
 
 const BeastSkillSection = () => {
   const [isMounted, setIsMounted] = useState<boolean>(false);
@@ -26,7 +49,15 @@ const BeastSkillSection = () => {
       <Text>
         Enter the stats from the Skills sections from the beast. The second tab
         of the beast screen.
-      </Text>
+      </Text>{" "}
+      <Popover
+        content={beastSkillContent}
+        title="Beast Skills"
+        trigger="hover"
+        placement="right"
+      >
+        <InfoCircleOutlined style={{ color: "red" }} />
+      </Popover>
       <Row gutter={[16, 16]}>
         <Col xs={24} sm={24} md={12} lg={6} xl={6}>
           <Form.Item
@@ -35,7 +66,7 @@ const BeastSkillSection = () => {
             tooltip={"Beast Skill Life essence Energy Value"}
             rules={[{ required: true, message: "Beast Skill LE is Required" }]}
           >
-            <InputNumber min={0} style={{ width: "100%" }} />
+            <InputNumber min={0} max={16400} style={{ width: "100%" }} />
           </Form.Item>
         </Col>
 
@@ -46,7 +77,7 @@ const BeastSkillSection = () => {
             tooltip={"Beast Skill Vital Energy Value"}
             rules={[{ required: true, message: "Beast Skill VE is Required" }]}
           >
-            <InputNumber min={1} style={{ width: "100%" }} />
+            <InputNumber min={1} max={16400} style={{ width: "100%" }} />
           </Form.Item>
         </Col>
 
@@ -57,7 +88,7 @@ const BeastSkillSection = () => {
             tooltip={"Beast Skill Strength Value"}
             rules={[{ required: true, message: "Beast Skill Str is Required" }]}
           >
-            <InputNumber min={0} style={{ width: "100%" }} />
+            <InputNumber min={0} max={16400} style={{ width: "100%" }} />
           </Form.Item>
         </Col>
 
@@ -68,11 +99,22 @@ const BeastSkillSection = () => {
             tooltip={"Beast Skill Dexterity Value"}
             rules={[{ required: true, message: "Beast Skill DEX is Required" }]}
           >
-            <InputNumber min={0} style={{ width: "100%" }} />
+            <InputNumber min={0} max={16400} style={{ width: "100%" }} />
           </Form.Item>
         </Col>
-       
       </Row>
+      <Text>
+        If Beast is mounted to a servant, enter the [Mount Attributes] from the
+        attribute section of the beast.
+      </Text>{" "}
+      <Popover
+        content={beastSkillMountedContent}
+        title="Beast Mount Attribute"
+        trigger="hover"
+        placement="right"
+      >
+        <InfoCircleOutlined style={{ color: "red" }} />
+      </Popover>
       <Row gutter={[16, 16]}>
         <Col xs={24} sm={24} md={12} lg={6} xl={6}>
           <Form.Item

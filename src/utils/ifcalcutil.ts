@@ -7,7 +7,11 @@ import type { UserIfInput } from "../types/userIfInput";
 const calculateIf = (
   userInputData: UserIfInput,
   selectedBeastData: BeastDataType
-): { beastTotalIf: number; unmountTotalIfloss: number } => {
+): {
+  beastTotalIf: number;
+  unmountTotalIfloss: number;
+  beastRidingAttr: { LE: number; STR: number; VE: number; DEX: number };
+} => {
   let blGain = 0;
   if (userInputData.beastBloodLineLevel > 0) {
     const beastBloodLineLevelMultiplier = blMultiplier.find(
@@ -72,6 +76,8 @@ const calculateIf = (
     userInputData.beastSkillDEX
   );
 
+  console.log(beastLE, beastSTR, beastDEX, beastVE, "sss");
+
   const boostedBeastLE = calculateBeastStatGainWithBoost(
     beastLE,
     userInputData.allianceLEBoostPerc +
@@ -96,6 +102,13 @@ const calculateIf = (
     beastDEX,
     userInputData.allianceDEXBoost + userInputData.xuanBoostPerc
   );
+
+  const beastRidingAttr = {
+    LE: beastLE,
+    STR: beastSTR,
+    VE: beastVE,
+    DEX: beastDEX,
+  };
 
   const beastLE_IF = calculateBeastStatGainedIF(boostedBeastLE, 5);
   const beastSTR_IF = calculateBeastStatGainedIF(boostedBeastSTR, 5);
@@ -173,6 +186,7 @@ const calculateIf = (
   return {
     beastTotalIf: Math.floor(total),
     unmountTotalIfloss: Math.floor(ifLoss),
+    beastRidingAttr: beastRidingAttr,
   };
 };
 
