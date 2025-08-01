@@ -72,6 +72,16 @@ const BeastSkillSection = () => {
 
         <Col xs={24} sm={24} md={12} lg={6} xl={6}>
           <Form.Item
+            name="beastSkillDEX"
+            label="Dexterity"
+            tooltip={"Beast Skill Dexterity Value"}
+            rules={[{ required: true, message: "Beast Skill DEX is Required" }]}
+          >
+            <InputNumber min={0} max={16400} style={{ width: "100%" }} />
+          </Form.Item>
+        </Col>
+        <Col xs={24} sm={24} md={12} lg={6} xl={6}>
+          <Form.Item
             name="beastSkillVE"
             label="Vital Energy"
             tooltip={"Beast Skill Vital Energy Value"}
@@ -92,16 +102,6 @@ const BeastSkillSection = () => {
           </Form.Item>
         </Col>
 
-        <Col xs={24} sm={24} md={12} lg={6} xl={6}>
-          <Form.Item
-            name="beastSkillDEX"
-            label="Dexterity"
-            tooltip={"Beast Skill Dexterity Value"}
-            rules={[{ required: true, message: "Beast Skill DEX is Required" }]}
-          >
-            <InputNumber min={0} max={16400} style={{ width: "100%" }} />
-          </Form.Item>
-        </Col>
       </Row>
       <Text>
         If Beast is mounted to a servant, enter the [Mount Attributes] from the
